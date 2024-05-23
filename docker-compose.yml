@@ -1,0 +1,18 @@
+version: "3"
+services:
+  lang-segment-anything:
+    image: lang-segment-anything:latest
+    environment:
+      - "DISPLAY=${DISPLAY}"
+      - "NVIDIA_VISIBLE_DEVICES=all"
+      - "NVIDIA_DRIVER_CAPABILITIES=all"
+    volumes:
+      - ./:/workspace
+      - "/tmp/.X11-unix:/tmp/.X11-unix:rw"
+    tty: true
+    privileged: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - capabilities: [gpu]
